@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="sc-gsDKAQ flOrLh"
+>
+  <div
+    className="repository"
+  >
+    <div>
+      any
+    </div>
+    <div
+      className="link"
+      onClick={[Function]}
+    >
+      Link: 
+      any
+    </div>
+    <div>
+      Amount of stars: non
+    </div>
+    <br />
+    <div
+      className="clickable-text"
+      onClick={[Function]}
+    >
+      More
+    </div>
+  </div>
+</div>
+`;

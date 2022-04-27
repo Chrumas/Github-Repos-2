@@ -35,6 +35,7 @@ export const useUserContext = () => useContext(UserContext);
 
 export const useUserUpdateContext = () => useContext(UserUpdateContext);
 
+
 //Component acting like a custom hook giving me access to a "global" memory thorough the whole project.
 export const ContextProvider: React.FC<ParentCompProps> = ({ children }) => {
   const [search, setSearch] = useState<GlobalSearch>({ search: "x" });
@@ -49,7 +50,7 @@ export const ContextProvider: React.FC<ParentCompProps> = ({ children }) => {
       <SearchUpdateContext.Provider value={setSearch}>
         <UserContext.Provider value={user}>
           <UserUpdateContext.Provider value={setUser}>
-            {children}
+                {children}
           </UserUpdateContext.Provider>
         </UserContext.Provider>
       </SearchUpdateContext.Provider>

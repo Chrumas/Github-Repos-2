@@ -4,19 +4,25 @@ export const StyledSearchSuggestions = styled.div`
   display: flex;
 
   .search-suggestion {
-    background-color: #e4b2ee;
-    color: #993899;
+    cursor: pointer;
+    background-color: #c4beff;
+    margin-top: 2px;
+    border: 1px dotted white;
+    margin-right: 2px;
+    border-radius: 5px;
+    color: #272727;
     padding: 3px;
+    font-family: "Lucida Console", "Courier New", monospace;
     padding-left: 10px;
     &:hover {
-      background-color: #782897;
+      background-color: #272727;
       color: white;
     }
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .search-suggestions-map {
-    border-radius: 0 0 0rem 2rem;
+    border-radius: 0 0 5px 5px;
     z-index: 5;
     position: relative;
     top: 30px;
@@ -32,13 +38,13 @@ export const StyledSearchSuggestions = styled.div`
 
     ::-webkit-scrollbar-track {
       width: 20px;
-      background-color: #e4b2ee;
+      background-color: #dfdfdf;
       border-radius: 0 0 10px 10px;
     }
 
     ::-webkit-scrollbar-thumb {
       width: 20px;
-      background-color: #5c2248;
+      background-color: #0e004b;
       border-radius: 10px;
     }
   }

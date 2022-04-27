@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="sc-bdvvtL jgrgcp"
+>
+  <div>
+    <div
+      className="input"
+    >
+      <div
+        className="input-form"
+      >
+        <input
+          data-testid="input"
+          onChange={[Function]}
+          required={true}
+          type="text"
+        />
+        <span
+          className="placeholder"
+          data-testid="placeholder"
+        >
+          Username
+        </span>
+      </div>
+      <div
+        className="search-button"
+        data-testid="button"
+        onClick={[Function]}
+      >
+        Search
+      </div>
+    </div>
+  </div>
+  <div
+    className="suggestions"
+    style={
+      Object {
+        "visibility": "hidden",
+      }
+    }
+  >
+    <div
+      className="sc-gsDKAQ fNpFzQ"
+    >
+      <div
+        className="search-suggestions-map-wrapper"
+      >
+        <div
+          className="search-suggestions-map"
+        >
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

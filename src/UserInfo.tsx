@@ -19,7 +19,6 @@ export const UserInfo = () => {
     setUserName(user.name);
     setAvatarUrl(user.avatarUrl);
     setProfileUrl(user.githubLink);
-    console.log(userName);
   }, [user]);
 
   if (userName !== "" && avatarUrl !== "" && profileUrl !== "") {

@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <StyledApp>
         <div className="bg"></div>
         <div className="wrapper">
-          <div className="header">GitHub Repos</div>
+          <div className="header"></div>
           <InputField />
           <UserInfo />
           <RepoList />

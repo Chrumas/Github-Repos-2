@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="sc-bdvvtL hZTdAJ"
+>
+  <div
+    className="search-suggestions-map-wrapper"
+  >
+    <div
+      className="search-suggestions-map"
+    >
+      
+    </div>
+  </div>
+</div>
+`;

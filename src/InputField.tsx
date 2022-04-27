@@ -9,44 +9,44 @@ export const InputField = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const setSearch = useSearchUpdateContext();
   const textInput = useRef<HTMLInputElement>(null);
-  const suggestionsRef = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(false)
+  const suggestionsRef = useRef<any>(null);
+  const [isOpen, setIsOpen] = useState(false);
   let styleHelper = "hidden";
 
-  useEffect(()=>{
-    const closeDropdown = (e:any) =>{
-      console.log("path")
-      console.log(e.path[0]);
-      console.log("target");
-      console.log(suggestionsRef.current);
-      if(e.path[0]=== textInput.current){
+  //Makes sure that the dropdown menu closes when a click outside happens
+  useEffect(() => {
+    const closeDropdown = (e: any) => {
+      var suggestionClicked: boolean = false;
+      suggestionsRef.current.refCallback.current.forEach((element: any) => {
+        if (e.path[0] === element) suggestionClicked = true;
+      });
+      if (e.path[0] === textInput.current) {
         setIsOpen(true);
       }
-      if(e.path[0]!== textInput.current&&e.path[0]!== suggestionsRef.current){
-        if(textInput.current!==null)
-      textInput.current.blur();
-      setIsOpen(false);
-    }
-    }
-    document.body.addEventListener('mousedown', closeDropdown);
-    return ()=> document.body.removeEventListener('mousedown', closeDropdown);
-  },[])
- 
-  
-  const FocusOnSearchComponent = () =>{
+      if (e.path[0] !== textInput.current && !suggestionClicked) {
+        if (textInput.current !== null) textInput.current.blur();
+        setIsOpen(false);
+      }
+    };
+    document.body.addEventListener("mousedown", closeDropdown);
+    return () => document.body.removeEventListener("mousedown", closeDropdown);
+  }, []);
+
+  const FocusOnSearchComponent = () => {
     setSearch(searchTerm);
     setIsOpen(true);
-    if(textInput.current!==null){
-      textInput.current.focus();}
+    if (textInput.current !== null) {
+      textInput.current.focus();
+    }
+  };
+
+  if (document.activeElement === textInput.current && isOpen !== true) {
+    setIsOpen(true);
   }
 
-  if (document.activeElement === textInput.current&&isOpen!==true) {
-    setIsOpen(true);
-   }
-   
-  if(isOpen) styleHelper = "visible";
+  if (isOpen) styleHelper = "visible";
 
-  const style ={visibility: styleHelper} as React.CSSProperties
+  const style = { visibility: styleHelper } as React.CSSProperties;
 
   useEffect(() => {
     //setSearch(searchTerm);
@@ -55,22 +55,33 @@ export const InputField = () => {
   return (
     <StyledInput>
       <div>
-      <div className="xd">
-      <input
-      ref={textInput}
-        type="text"
-        //value={copy}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-        }}
-        required
-      />
-      <span className="placeholder">Username</span>
+        <div className="input">
+          <div className="input-form">
+            <input
+              data-testid="input"
+              ref={textInput}
+              type="text"
+              //value={copy}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+              required
+            />
+            <span data-testid="placeholder" className="placeholder">
+              Username
+            </span>
+          </div>
+          <div
+            data-testid="button"
+            className="search-button"
+            onClick={() => FocusOnSearchComponent()}
+          >
+            Search
+          </div>
+        </div>
       </div>
-      <div onClick={()=>FocusOnSearchComponent()}>Search</div>
-      </div>
-      <div style = {style} className="suggestions">
-        <SearchSuggestions ref={suggestionsRef}/>
+      <div style={style} className="suggestions">
+        <SearchSuggestions ref={suggestionsRef} />
       </div>
     </StyledInput>
   );

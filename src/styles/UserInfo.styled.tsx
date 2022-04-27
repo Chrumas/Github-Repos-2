@@ -6,11 +6,10 @@ type Props = {
 
 export const StyledUserInfo = styled.div<Props>`
   border: 30px;
-  background: linear-gradient(
-    rgba(210, 100, 101, 0.7),
-    rgba(145, 152, 229, 0.7)
-  );
+  background: linear-gradient(rgba(21, 0, 116, 0.7), rgba(36, 36, 36, 0.7));
+  border: 1px solid rgb(102, 102, 102);
   display: grid;
+  margin-top: 5px;
   align-items: center;
   grid-template-columns: repeat(2, 14rem);
   grid-template-rows: repeat(2, 6rem);
@@ -45,7 +44,8 @@ export const StyledUserInfo = styled.div<Props>`
   }
 
   .name {
-    background-color: #f7797d;
+    cursor: pointer;
+    background-color: #31005f;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     color: white;

@@ -1,8 +1,8 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { StyledRepoList } from "./styles/RepoList.styled";
 import { useUserContext, User } from "./ContextProvider";
-import { openInNewTab } from "./UserInfo";
+import { RepoInfo } from "./RepoInfo";
+import { ErrorMessage } from "./ErrorMessage";
 
 //Component responsible for rendering a list of github repositories of a chosen user
 export const RepoList = () => {
@@ -10,11 +10,11 @@ export const RepoList = () => {
   const user: User = useUserContext();
   const [repoMap, setRepos] = useState();
   const [scrollState, setScroll] = useState(10);
+  const [errorMessage, setErrorMessage] = useState("");
 
+  //Gets proper scroll measurement
   const handleScroll = (event: any) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
-    let temp: number = clientHeight - scrollHeight;
-    console.log(temp);
     if (scrollTop === scrollHeight - clientHeight) {
       setScroll(scrollState + 10);
     }
@@ -24,10 +24,8 @@ export const RepoList = () => {
     setScroll(10);
   }, [user]);
 
+  //Fetches data about user's repositories (according to the amount that's supposed to be printed)
   useEffect(() => {
-    console.log("Repo list:");
-    console.log(user);
-    console.log(repoMap);
     if (user.name !== "") {
       let uri =
         "https://api.github.com/users/" +
@@ -36,8 +34,17 @@ export const RepoList = () => {
         scrollState;
       try {
         fetch(uri)
-          .then((response) => response.json())
+          .then((response) => {
+            if (!response.ok) {
+              if (response.status === 403) {
+                setErrorMessage("API limit exceeded!");
+                throw new Error("API limit exceeded!");
+              }
+            }
+            return response.json();
+          })
           .then((data) => {
+            setErrorMessage("");
             let tempArr: any = data;
             tempArr = tempArr
               .sort(function (a: any, b: any) {
@@ -46,25 +53,29 @@ export const RepoList = () => {
               .slice(0, scrollState);
             var map = tempArr.map((choice: any) => {
               return (
-                <div
-                  className="repository"
-                  onClick={() => openInNewTab(choice.html_url)}
-                >
-                  <div>{choice.name}</div>
-                  <div className="link">{choice.html_url}</div>
-                  <div>{"Amount of stars: " + choice.stargazers_count}</div>
-                </div>
+                <>
+                  <RepoInfo
+                    url={choice.html_url}
+                    owner={user.name}
+                    name={choice.name}
+                    stargazers={choice.stargazers_count}
+                  />
+                </>
               );
             });
             setRepos(map);
+          })
+          .catch((e) => {
+            console.log(e);
           });
-      } catch {
-        console.log(
-          "Error. Probably the GitHub API request limit is the issue."
-        );
-      }
+      } catch {}
     }
   }, [user, scrollState]);
 
-  return <StyledRepoList onScroll={handleScroll}>{repoMap}</StyledRepoList>;
+  return (
+    <StyledRepoList onScroll={handleScroll}>
+      <ErrorMessage inputColor="red" inputName={errorMessage} />
+      {repoMap}
+    </StyledRepoList>
+  );
 };
