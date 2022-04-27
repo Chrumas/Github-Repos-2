@@ -10,6 +10,7 @@ export const StyledRepoList = styled.div`
   align-items: center;
   flex-direction: column;
   max-height: 500px;
+  height: fit-content;
   width: fit-content;
   min-width: 420px;
   overflow-y: auto;

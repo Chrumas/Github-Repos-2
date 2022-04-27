@@ -16,7 +16,7 @@ export const StyledApp = styled.div`
   background-repeat: no-repeat;
   background-size: 100% 100%;
   .header {
-    min-height: 80px;
+    min-height: 50px;
     width: 100%;
     font-size: 50px;
     padding: 20px;
@@ -39,5 +39,7 @@ export const StyledApp = styled.div`
     border-radius: 15px;
     padding: 20px;
     margin: 20px;
+    height: fit-content;
+    min-height: 150px;
   }
 `;
