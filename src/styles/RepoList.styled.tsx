@@ -14,6 +14,7 @@ export const StyledRepoList = styled.div`
   width: fit-content;
   min-width: 420px;
   overflow-y: auto;
+  margin-bottom: 60px;
 
   ::-webkit-scrollbar {
     width: 5px;

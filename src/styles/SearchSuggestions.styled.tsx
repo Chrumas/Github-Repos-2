@@ -5,18 +5,19 @@ export const StyledSearchSuggestions = styled.div`
 
   .search-suggestion {
     cursor: pointer;
-    background-color: #c4beff;
     margin-top: 2px;
-    border: 1px dotted white;
+    border: 1px solid #dfdfdf;
+    opacity: 0.9;
     margin-right: 2px;
     border-radius: 5px;
-    color: #272727;
     padding: 3px;
+    background-color: #272727;
+    color: white;
     font-family: "Lucida Console", "Courier New", monospace;
     padding-left: 10px;
     &:hover {
-      background-color: #272727;
-      color: white;
+      color: #272727;
+      background-color: #dfdfdf;
     }
     transition: background-color 0.2s ease, color 0.2s ease;
   }
